@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  minio:
+    container_name: fileserver_minio
+    image: minio/minio
+#    environment:
+#    command:
+    ports:
+      - "9000:9000"
+  redis:
+    container_name: fileserver_redis
+    image: redis:alpine
+  flask:
+    container_name: fileserver_flask
+    depends_on:
+      - minio
+      - redis
+#    environment:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "5000:5000"
+    links:
+      - redis
+      - minio

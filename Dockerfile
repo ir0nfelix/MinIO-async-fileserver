@@ -1,7 +1,5 @@
 FROM python:3.7-alpine3.8
 
-MAINTAINER Artem Sudoma <artem.sudoma@gmail.com>
-
 RUN addgroup -S -g 777 django && adduser -D -S -G django -u 777 django
 
 RUN apk -U upgrade && apk -U add ca-certificates alpine-sdk musl-dev gcc python3-dev libmagic \
