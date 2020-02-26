@@ -21,8 +21,6 @@ class FileHandlerFactory(object):
             return JpegHandler(file_body.raw, file.file_name, type, length)
         elif type == 'image/png':
             return PngHandler(file_body.raw, file.file_name, type, length)
-        elif type == 'application/pdf':
-            return PdfHandler(file_body.raw, file.file_name, type, length)
         else:
             raise FileServerError('Неподдерживаемый формат файла', field='file')
 
@@ -135,7 +133,3 @@ class PngHandler(FileHandler):
                 'height': self.image[1]
             }
         }
-
-
-class PdfHandler(FileHandler):
-    DEFAULT_EXT = 'pdf'

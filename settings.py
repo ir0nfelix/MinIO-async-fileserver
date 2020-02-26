@@ -13,11 +13,11 @@ AUTHENTICATION_BACKEND = 'authentication.JSONWebTokenAuthentication'
 
 # region Minio
 MINIO_SCHEME = env('MINIO_SCHEME', default='http')
-MINIO_HOST = env('MINIO_HOST', default='localhost')
+MINIO_HOST = env('MINIO_HOST', default='127.0.0.1')
 MINIO_PORT = env('MINIO_PORT', '9000')
 
-MINIO_ACCESS_KEY = env('MINIO_ACCESS_KEY', 'sapsanshop')
-MINIO_SECRET_KEY = env('MINIO_SECRET_KEY', 'sapsanshop')
+MINIO_ACCESS_KEY = env('MINIO_ACCESS_KEY', 'minioadmin')
+MINIO_SECRET_KEY = env('MINIO_SECRET_KEY', 'minioadmin')
 
 MINIO_SECURE = env('MINIO_SECURE', False, cast=bool)
 

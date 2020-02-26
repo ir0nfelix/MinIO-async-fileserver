@@ -22,10 +22,8 @@ async def upload(request):
     except HTTPRequestEntityTooLarge:
         raise OversizeFileError()
     except:
-        sentry_client = request.app.get('sentry_client')
-        if sentry_client:
-            sentry_client.captureException()
         raise FileServerError('Файл не был получен', field='file')
+
     redis_storage = request.app.get('redis_storage')
     file_storage = request.app.get('file_storage')
     data = FileData(file_name=file.filename, file_body=file.file)
