@@ -33,7 +33,7 @@ class FileHandler(object):
         self.orig_file_name = filename
         self.file_type = type_
         self.file_length = length
-        self.file_name = None
+        self.minio_file_name = None
         self.after_init()
 
     def after_init(self):
@@ -41,7 +41,7 @@ class FileHandler(object):
 
     def get_file_data(self):
         return {
-            'file_name': self._generate_filename(),
+            'minio_file_name': self._generate_filename(),
             'file_type': self.file_type,
             'orig_file_name': self.orig_file_name,
             'file_size': self.file_length,
@@ -55,12 +55,12 @@ class FileHandler(object):
         pass
 
     async def save(self, storage):
-        await storage.save(self.file_name, self.file_stream)
+        await storage.save(self.minio_file_name, self.file_stream)
 
     def _generate_filename(self):
-        if not self.file_name:
-            self.file_name = '{}.{}'.format(uuid4().hex, self.DEFAULT_EXT)
-        return self.file_name
+        if not self.minio_file_name:
+            self.minio_file_name = '{}.{}'.format(uuid4().hex, self.DEFAULT_EXT)
+        return self.minio_file_name
 
 
 class JpegHandler(FileHandler):
