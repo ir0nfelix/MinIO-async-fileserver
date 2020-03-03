@@ -4,7 +4,6 @@ from aiohttp.web_request import FileField
 from aiohttp.web_response import json_response
 
 import settings
-from decorators import authenticate
 from exceptions import FileServerError, OversizeFileError
 from .dataclassess import FileData
 from .upload import upload_file

@@ -1,6 +1,5 @@
 from uuid import uuid4
 
-import settings
 from .dataclassess import FileData
 from .handlers import FileHandlerFactory
 
