@@ -6,6 +6,7 @@ import png
 from PIL import Image
 
 from exceptions import FileServerError
+from settings import BISTRO_IMAGE_SIZE
 from .dataclassess import FileData
 
 
@@ -34,6 +35,7 @@ class FileHandler(object):
         self.file_type = type_
         self.file_length = length
         self.minio_file_name = None
+        self.original_size
         self.after_init()
 
     def after_init(self):
@@ -66,9 +68,14 @@ class FileHandler(object):
 class JpegHandler(FileHandler):
     DEFAULT_EXT = 'jpeg'
     image = None
+    original_size = None
 
     def after_init(self):
-        self.image = Image.open(self.file_stream)
+        orig_image_obj = Image.open(self.file_stream)
+        self.original_size = orig_image_obj.size
+
+        image_obj = orig_image_obj.resize(BISTRO_IMAGE_SIZE)
+        self.image = image_obj
 
     def process_file(self):
         if not self.image.info.get("progressive", False):
@@ -91,6 +98,10 @@ class JpegHandler(FileHandler):
     def get_extra_data(self):
         return {
             'original_size': {
+                'width': self.original_size[0],
+                'height': self.original_size[1]
+            },
+            'resize': {
                 'width': self.image.size[0],
                 'height': self.image.size[1]
             }

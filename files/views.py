@@ -24,8 +24,7 @@ async def upload(request):
     except:
         raise FileServerError('Файл не был получен', field='file')
 
-    redis_storage = request.app.get('redis_storage')
     file_storage = request.app.get('file_storage')
     data = FileData(file_name=file.filename, file_body=file.file)
-    data = await upload_file(data, redis_storage, file_storage)
+    data = await upload_file(data, file_storage)
     return json_response(data)
