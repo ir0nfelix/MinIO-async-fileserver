@@ -1,14 +1,14 @@
 export DEBUG=True
 
-export HOST=127.0.0.1
+export HOST=0.0.0.0
 export PORT=5000
 
 export MINIO_SCHEME=http
-export MINIO_HOST=127.0.0.1
+export MINIO_HOST=sapsanshop-minio
 export MINIO_PORT=9000
 
- export MINIO_ACCESS_KEY=hoK9VPtVI7gK
- export MINIO_SECRET_KEY=ogkGpxr7ULtq
+export MINIO_ACCESS_KEY=hoK9VPtVI7gK
+export MINIO_SECRET_KEY=ogkGpxr7ULtq
 
 export MINIO_BUCKET_NAME=sapsanshop
 export STORAGE_CLASS=storage.MinioStorage

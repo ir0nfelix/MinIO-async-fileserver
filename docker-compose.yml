@@ -1,22 +1,27 @@
 version: '3.7'
 
+networks:
+  sapsanshop-admin_sapsanshop:
+    external: true
+
+volumes:
+  minio_data:
+  minio_certs:
+
 services:
   minio:
-    container_name: fileserver_minio
-    image: minio/minio
-#    environment:
-#    command:
-    ports:
-      - "9000:9000"
-  flask:
-    container_name: fileserver_interface
+    container_name: sapsanshop-minio
+    image: ${CI_REGISTRY_IMAGE}/minio:latest
+    networks:
+      - sapsanshop-admin_sapsanshop
+    volumes:
+      - minio_data:/data
+      - minio_certs:/certs
+
+  filestorage:
+    container_name: sapsanshop-filestorage
+    image: ${CI_REGISTRY_IMAGE}:latest
     depends_on:
       - minio
-#    environment:
-    build: .
-    volumes:
-      - .:/code
-    ports:
-      - "5000:5000"
-    links:
-      - minio
+    networks:
+      - sapsanshop-admin_sapsanshop
