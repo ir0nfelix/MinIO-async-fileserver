@@ -9,7 +9,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -42,13 +41,3 @@ target/
 
 .cache/*
 .coverage
-
-secrets.yml
-
-env.sh
-.DS_Store
-
-.cache
-
-venv
-env.sh
