@@ -17,6 +17,9 @@ services:
     volumes:
       - minio_data:/data
       - minio_certs:/certs
+    environment:
+      - VIRTUAL_HOST=pics.sapsanshop.rm-tech.ru
+      - LETSENCRYPT_HOST=pics.sapsanshop.rm-tech.ru
 
   filestorage:
     container_name: sapsanshop-filestorage
