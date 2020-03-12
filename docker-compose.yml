@@ -12,6 +12,7 @@ services:
   minio:
     container_name: sapsanshop-minio
     image: ${CI_REGISTRY_IMAGE}/minio:latest
+    restart: unless-stopped
     networks:
       - sapsanshop-admin_sapsanshop
     volumes:
@@ -24,6 +25,7 @@ services:
   filestorage:
     container_name: sapsanshop-filestorage
     image: ${CI_REGISTRY_IMAGE}:latest
+    restart: unless-stopped
     depends_on:
       - minio
     networks:
