@@ -2,6 +2,8 @@ FROM bitnami/minio
 
 USER root
 
+ENV MINIO_BROWSER=off
+
 ENV MINIO_ACCESS_KEY=hoK9VPtVI7gK
 ENV MINIO_SECRET_KEY=ogkGpxr7ULtq
 
