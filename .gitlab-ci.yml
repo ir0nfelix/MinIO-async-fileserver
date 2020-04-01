@@ -14,14 +14,12 @@ build:
   tags:
     - image-builder
   script:
-    - docker pull $CI_REGISTRY_IMAGE:latest || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG --tag $CI_REGISTRY_IMAGE:latest .
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - docker push $CI_REGISTRY_IMAGE:latest
-    - docker pull $CI_REGISTRY_IMAGE/minio:latest || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE/minio:latest --tag $CI_REGISTRY_IMAGE/minio:$CI_COMMIT_REF_SLUG --tag $CI_REGISTRY_IMAGE/minio:latest ./containers/minio/
+    - docker pull $CI_REGISTRY_IMAGE/minio:$CI_COMMIT_REF_SLUG || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE/minio:$CI_COMMIT_REF_SLUG --tag $CI_REGISTRY_IMAGE/minio:$CI_COMMIT_REF_SLUG ./containers/minio/
     - docker push $CI_REGISTRY_IMAGE/minio:$CI_COMMIT_REF_SLUG
-    - docker push $CI_REGISTRY_IMAGE/minio:latest
 
 develop:
   stage: deploy
