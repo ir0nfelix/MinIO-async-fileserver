@@ -9,6 +9,6 @@ ENV MINIO_SECRET_KEY=ogkGpxr7ULtq
 
 ENV MINIO_DEFAULT_BUCKETS=sapsanshop
 
-RUN sed -i '/.*minio_client_execute mb.*/a \                minio_client_execute policy set download "local/${b}"' /libminio.sh
+RUN sed -i '/.*minio_client_execute mb.*/a \                minio_client_execute policy set download "local/${b}"' /opt/bitnami/scripts/libminio.sh
 
 USER 1001
