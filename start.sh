@@ -2,4 +2,4 @@
 
 . ./env.sh
 
-python3.7 app.py
+exec python3.7 app.py
