@@ -1,4 +1,4 @@
-FROM bitnami/minio
+FROM bitnami/minio:2020
 
 USER root
 
